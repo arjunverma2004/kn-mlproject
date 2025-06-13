@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from src.pipeline.predict_pipeline import CustomData,PredictPipeline
 
-application=Flask(__name__)
+application=Flask(__name__) #__name__ will give us the entry point
 
 app=application
 
@@ -16,7 +16,7 @@ def index():
     return render_template('index.html') 
 
 @app.route('/predictdata',methods=['GET','POST'])
-def predict_datapoint():
+def predict_datapoint(): #This function will be called in home.html page
     if request.method=='GET':
         return render_template('home.html')
     else:
@@ -29,7 +29,7 @@ def predict_datapoint():
             reading_score=float(request.form.get('writing_score')),
             writing_score=float(request.form.get('reading_score'))
 
-        )
+        ) #This customm data class in created in predict pipeline.py
         pred_df=data.get_data_as_data_frame()
         print(pred_df)
         print("Before Prediction")
